@@ -36,5 +36,9 @@ public class Main {
 
         System.out.println(opera.getLibrettoText());
         System.out.println(ballet.getLibrettoText());
+
+        show.getDirrector();
+        opera.getDirrector();
+        ballet.getDirrector();
     }
 }

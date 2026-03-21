@@ -20,6 +20,10 @@ public class Show {
         System.out.println("==============================");
     }
 
+    public void getDirrector() {
+        System.out.println(director.toString());
+    }
+
     public void setActor(Actor actor) {
         boolean dublActor = false;
         for (Actor a : listOfActors) {
