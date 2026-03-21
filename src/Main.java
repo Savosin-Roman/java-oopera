@@ -1,82 +1,40 @@
-import java.util.HashMap;
-import java.util.Scanner;
-
 public class Main {
-    private static HashMap<String, Show> shows = new HashMap<>();
-
     public static void main(String[] args) {
+        Actor actor1 = new Actor(Gender.FEMALE, "Алёна", "Васильева", 165);
+        Actor actor2 = new Actor(Gender.MALE, "Сергей", "Петров", 180);
+        Actor actor3 = new Actor(Gender.FEMALE, "Дарья", "Иванова", 160);
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Поехали!");
-        Director.addInicialDirectors();
-        Actor.addInicialActors();
-        Person.addInicialmusicalAutors();
-        Person.addInicialСhoreographer();
-        TheatreManager.addInicialShow();
-        TheatreManager.addInicialBallet();
-        TheatreManager.addInicialOpera();
+        Director director1 = new Director(Gender.MALE, "Пётр", "Николаев", 20);
+        Director director2 = new Director(Gender.FEMALE, "Ангелина", "Заботина", 4);
 
-        while (true) {
-            mainMenu();
-            int menuNumber = scanner.nextInt();
-            scanner.nextLine();
-            switch (menuNumber) {
-                case (1):
-                    info();
-                    break;
-                case (2):
-                    Actor.mainMenu(scanner);
-                    break;
-                case (3):
-                    Director.mainMenu(scanner);
-                    break;
-                case (4):
-                    Person.musicalAutorsMenu(scanner);
-                    break;
-                case (5):
-                    Person.choreographerMenu(scanner);
-                    break;
-                case (6):
-                    TheatreManager.showsMenu(scanner);
-                    break;
-                case (7):
-                    TheatreManager.balletMenu(scanner);
-                    break;
-                case (8):
-                    TheatreManager.operasMenu(scanner);
-                    break;
-                case (0):
-                    return;
-            }
-        }
-    }
+        Person musicAutor = new Person(Gender.FEMALE, "Ирина", "Музыкалкина");
+        Person choreographer = new Person(Gender.MALE, "Иван", "Танцевалкин");
 
-    private static void mainMenu() {
-        System.out.println("1. Инфромация о театре");
-        System.out.println("2. Актёры нашего театра");
-        System.out.println("3. Режиссёры нашего театра");
-        System.out.println("4. Авторы музыки");
-        System.out.println("5. Хореографы");
-        System.out.println("-------- Репертуар --------");
-        System.out.println("6. Пьеса");
-        System.out.println("7. Балет");
-        System.out.println("8. Опера");
-        System.out.println("0. Выход");
-        System.out.print("Введите номер пункта меню: ");
-    }
+        String libretto1 = "Либретто для оперы";
+        String libretto2 = "Либретто для балета";
 
-    private static void info() {
-        System.out.println("========================================");
-        System.out.println("В нашем театре 3 сцены - главная, большая и малая");
-        System.out.println("Сейчас у нас актёров - " + Actor.sumActors() + " и режиссёров - "
-                + Director.sumDirector());
-        System.out.println("========================================");
-    }
+        Show show = new Show("Война и мир", director1, 120);
+        Opera opera = new Opera("Верде", director2, 160, musicAutor, libretto1, 36);
+        Ballet ballet = new Ballet("Лебединое озеро", director1, 180,
+                musicAutor, libretto2, choreographer);
 
-    private static void directorsMenu() {
-        System.out.println("1. Список режиссёров");
-        System.out.println("2. Добавить режиссёра");
-        System.out.println("3. Удалить режиссёра");
-        System.out.println("0. Выйти в главное меню");
+        show.setActor(actor1);
+        show.setActor(actor3);
+
+        opera.setActor(actor2);
+        opera.setActor(actor3);
+
+        ballet.setActor(actor1);
+
+        show.getActors();
+        opera.getActors();
+        ballet.getActors();
+
+        show.targetActor(actor2, "Алёна");
+        show.getActors();
+        ballet.targetActor(actor1, "Денис");
+
+        System.out.println(opera.getLibrettoText());
+        System.out.println(ballet.getLibrettoText());
     }
 }

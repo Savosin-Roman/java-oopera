@@ -1,4 +1,4 @@
 public enum Gender {
-    МУЖ,
-    ЖЕН
+    MALE,
+    FEMALE
 }
